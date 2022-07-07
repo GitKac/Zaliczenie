@@ -34,6 +34,7 @@ public class shoppingSteps {
      @And("he choose a clothes")
     public void heChooseClothes() {
          AccountPage1 accountPage1 = new AccountPage1(driver);
+         accountPage1.searchBar("Hummingbird Printed Sweater");
          accountPage1.goToClothesPage();
 
          ClothesPage clothesPage = new ClothesPage(driver);
@@ -86,15 +87,13 @@ public class shoppingSteps {
          personalInformationPage.goToOrderConfirmationPage();
      }
      @And("he make a screenshot")
-    public void makeScreenshot() throws Exception {
+    public void makeScreenshot() {
         OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage(driver);
-        orderConfirmationPage.takeSnapShot(driver, "Screenshots") ;
+        orderConfirmationPage.takeScreenshot();
 
      }
      @And("he can close browser")
     public void closeBrowser() {
+        driver.quit();
      }
-
-
-
 }

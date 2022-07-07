@@ -14,6 +14,7 @@ public class MainPage1 {
     @FindBy(xpath = "//a[@title='Log in to your customer account']")
     private WebElement signInButton;
     public void goToLoginPage1() {
+
         signInButton.click();
     }
 }
