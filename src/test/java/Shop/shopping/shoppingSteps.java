@@ -86,12 +86,12 @@ public class shoppingSteps {
          personalInformationPage.termsAndConditions();
          personalInformationPage.goToOrderConfirmationPage();
      }
-     @And("he make a screenshot")
+    @And("he make a screenshot")
     public void makeScreenshot() {
         OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage(driver);
+        orderConfirmationPage.content();
         orderConfirmationPage.takeScreenshot();
-
-     }
+    }
      @And("he can close browser")
     public void closeBrowser() {
         driver.quit();
