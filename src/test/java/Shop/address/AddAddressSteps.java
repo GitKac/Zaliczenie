@@ -14,6 +14,7 @@ import java.time.Duration;
 
 public class AddAddressSteps {
     WebDriver driver;
+    private long userAddAddressDetails;
 
     @Given("User is logged to the account")
     public void userIsLoggedToTheAccount() {
@@ -41,21 +42,28 @@ public class AddAddressSteps {
         addressesPage.goToAddressFormPage();
     }
 
-    @When("User add his <Alias> <Address> <PostCode> <City> <Country> and <Phone> details to account")
-    public void userAddAddressDetails() {
-       AddressFormPage addressFormPage = new AddressFormPage(driver);
-       addressFormPage.gotoUserSeesPage("Bob", "1 New Str","N1 9OP", "Newport", "United Kingdom", "7522670730");
+    @When("User add {}, {}, {}, {}, {} and {} details to account")
+    public void userAddAddressDetails(String Alias, String Address, String City, String PostCode, String Country, String Phone) throws Throwable {
+        AddressFormPage addressFormPage = new AddressFormPage(driver);
+        addressFormPage.userAdd(Alias, Address, City, PostCode, Country, Phone);
+        addressFormPage.goToUserSeePage();
     }
 
     @Then("User can double check all details")
-    public void userSees(){
+    public void userSees() throws Throwable {
         UsersSeesPage usersSeesPage = new UsersSeesPage(driver);
+        usersSeesPage.notePopUp();
+        Assert.assertTrue(usersSeesPage.getPopUp().contains("Address successfully added!"));
         usersSeesPage.addressInfo();
-        usersSeesPage.cleanAddresses();
-    }
 
+
+        usersSeesPage.cleanAddresses();
+        usersSeesPage.labelConf();
+        usersSeesPage.getConfirmation();
+        Assert.assertTrue(usersSeesPage.getConfirmation().contains("Address successfully deleted!"));
+    }
     @And("he can close browser")
-            public void closeBrowser(){
+    public void closeBrowser() {
 
         driver.quit();
     }

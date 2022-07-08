@@ -26,25 +26,26 @@ public class AddressFormPage {
     private WebElement phoneInput;
     @FindBy(xpath = "//section[@id='content']/div/div/form/footer/button")
     private WebElement saveButton;
-
-    public void gotoUserSeesPage(String Alias, String Address, String City, String PostCode, String Country, String Phone){
+    public void userAdd(String Alias, String Address, String City, String PostCode, String Country, String Phone) {
         aliasInput.click();
         aliasInput.clear();
         aliasInput.sendKeys(Alias);
         addressInput.click();
         addressInput.clear();
         addressInput.sendKeys(Address);
-        postcodeInput.click();
-        postcodeInput.clear();
-        postcodeInput.sendKeys(PostCode);
         cityInput.click();
         cityInput.clear();
         cityInput.sendKeys(City);
+        postcodeInput.click();
+        postcodeInput.clear();
+        postcodeInput.sendKeys(PostCode);
         countrySelect.click();
         countrySelect.sendKeys(Country);
         phoneInput.click();
         phoneInput.clear();
         phoneInput.sendKeys(Phone);
-        saveButton.click();
     }
-}
+    public void goToUserSeePage() {
+            saveButton.click();
+        }
+    }

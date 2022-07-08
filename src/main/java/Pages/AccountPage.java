@@ -13,7 +13,8 @@ public class AccountPage {
     }
     @FindBy(xpath = "//a[@id='addresses-link']/span")
     private WebElement addressesLink;
-    public void goToAddressesPage(){
+    public void goToAddressesPage() {
+
         addressesLink.click();
     }
 }
